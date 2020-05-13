@@ -1,0 +1,17 @@
+auto
+12
+int
+double
+INT
+12.6
+10e10
++12
+-12.0
+0.0
+esto es una cadena
+a
+/*comenario*/
+/*prueba
+larga comen
+*/
+
