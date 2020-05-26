@@ -1,0 +1,24 @@
+void main(void)
+{
+	switch(var)
+	{
+		case 3:
+		int var=0;
+		break;
+		default:
+		break;
+	}
+	while(al>=ab)
+	{
+	int variable = b+a;
+	}
+	//printf;
+	for(int abc=3; abc>4; abc++)
+	{
+		if(calabozo==calabozo)
+		{
+		//no hagas nada
+		}
+	}
+}
+

@@ -92,7 +92,7 @@ signo[+\-]
 {signo}?({real}+\.{real}+|\.{real}+|{real}\.)'f'	{return FLOTANTE;}
 {signo}?({real}+\.{real}+|\.{real}+|{real}\.)		{return DOBLEPRECISION;}
 
-{Booleano}		{return BOOLEANO}//Expresion regular para valores booleanos.
+{Booleano}		{return BOOLEANO;}//Expresion regular para valores booleanos.
 
 \"[^\0\n\"] {;BEGIN(cadena);}//Condición de arranque para cadenas con contenido
 <cadena>[^"\n] {;}
@@ -104,17 +104,19 @@ signo[+\-]
 
 (_?{Letra}+|_{Digito}*)({Digito}*{Letra}*_*)* {return ID;}//Expresión regular para un identificador
 
-.*			{printf("Error en linea: %d\n",yylineno);}//Cualquier error
+.			{printf("Error en linea: %d\n",yylineno);}//Cualquier error
 
 %%
 
 yyerror(char *msg){
-	printf("%s\n",msg);
+	printf("%s, line %d\n",msg, yylineno);
 }
 
 
 void main(int argc, char *argv[]){
 	
+	FILE *table;
+	FILE *error;	
 	table=fopen("Tabla.txt","w");
 	error=fopen("Errores.txt","w");
 	if (argc>1)
@@ -123,7 +125,10 @@ void main(int argc, char *argv[]){
 		printf("No se pudo abrir el archivo");
 		exit(0);
 	}
-	yyparse();
+	if(!yyparse()){
+		printf("Compilado con exito\n");
+	}
+
 	fclose(table);
 	fclose(error);
 }
